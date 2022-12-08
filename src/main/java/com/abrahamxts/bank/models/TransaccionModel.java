@@ -7,6 +7,7 @@ import javax.persistence.*;
 
 @Data
 @Entity
+@NoArgsConstructor
 @Table(name = "Transaccion")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class TransaccionModel {

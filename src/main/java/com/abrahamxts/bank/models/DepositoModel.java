@@ -3,11 +3,11 @@ package com.abrahamxts.bank.models;
 import lombok.*;
 import javax.persistence.*;
 
-
 @Data
 @Entity
+@NoArgsConstructor
 @Table(name = "Deposito")
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 public class DepositoModel extends TransaccionModel {
 
 	public DepositoModel(CuentaModel cuenta, double monto) {

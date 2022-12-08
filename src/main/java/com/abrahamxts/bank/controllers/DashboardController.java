@@ -1,36 +1,70 @@
 package com.abrahamxts.bank.controllers;
 
 import java.util.*;
-import org.springframework.ui.Model;
-import org.springframework.stereotype.Controller;
+import javax.servlet.http.*;
+import org.springframework.ui.*;
+import org.springframework.stereotype.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.abrahamxts.bank.models.ClienteModel;
-import com.abrahamxts.bank.repositories.ClienteRepository;
-
-import com.abrahamxts.bank.models.CuentaModel;
-import com.abrahamxts.bank.repositories.CuentaRepository;
+import com.abrahamxts.bank.models.*;
+import com.abrahamxts.bank.services.*;
 
 @Controller
 public class DashboardController {
 
 	@Autowired
-	ClienteRepository clienteRepository;
-	
+	ClienteService clienteService;
+
 	@Autowired
-	CuentaRepository cuentaRepository;
+	CuentaService cuentaService;
+
+	@Autowired
+	TransaccionService transaccionService;
 
 	@GetMapping(value = "dashboard")
-	public String dashboard(@ModelAttribute("token") String token, Model model) {
+	public String cuentas(HttpServletRequest request, Model model) {
 
-		Optional<ClienteModel> cliente = clienteRepository.findByToken(token);
+		ClienteModel cliente = clienteService.getClienteByToken(
+			(String) request.getSession().getAttribute("token")
+		);
 
-		List<CuentaModel> cuentas = cuentaRepository.findAllByClienteId(cliente.get());
+		List<CuentaModel> cuentas = cuentaService.getAccountsByClient(cliente);
 
-		model.addAttribute("token", token);
+		request.getSession().setAttribute("cliente", cliente);
+	
 		model.addAttribute("cuentas", cuentas);
-		model.addAttribute("cliente", cliente.get());
-		return "dashboard";
+		return "cuentas";
+	}
+
+	@GetMapping(value = "movimientos")
+	public String movimientos(HttpServletRequest request, Model model) {
+
+		List<TransaccionModel> movimientos = new ArrayList<TransaccionModel>();
+
+		List<CuentaModel> cuentas = cuentaService.getAccountsByClient(
+			(ClienteModel) request.getSession().getAttribute("cliente")
+		);
+
+		for (CuentaModel cuenta : cuentas) {
+			movimientos.addAll(
+				transaccionService.getTransactionsByAccountNumber(cuenta)
+			);
+		}
+
+		model.addAttribute("movimientos", movimientos);
+		return "movimientos";
+	}
+
+	@GetMapping(value = "transacciones")
+	public String transacciones(HttpServletRequest request, Model model) {
+
+		return "transacciones";
+	}
+
+	@GetMapping(value = "transferencias")
+	public String transferencias(HttpServletRequest request, Model model) {
+
+		return "transferencias";
 	}
 }

@@ -6,14 +6,18 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<script th:src="@{/styles/tailwind.js}"></script>
+	<link rel="shortcut icon" href="https://flowbite.com/docs/images/logo.svg" type="svg/x-icon">
 	<title>Inicia sesión</title>
 </head>
 
 <body>
 	<div class="flex flex-col justify-center items-center h-screen w-full">
-		<div class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg w-1/2 mb-10 mx-auto" th:if="${error}">
-			<span class="font-medium">¡Oh no! </span><span th:text="${error}"></span>
+		<div class="w-full flex flex-col justify-center items-center gap-2 mb-12">
+			<img src="https://flowbite.com/docs/images/logo.svg" class="h-6 mr-3 sm:h-9" alt="Logo">
+			<span class="self-center text-xl font-semibold whitespace-nowrap">BankSpring</span>
+			<p>¡Siempre contigo!</p>
 		</div>
+		<div id="messages" class="w-1/2 mx-auto"></div>
 		<form action="login" method="post" class="w-1/2">
 			<div class="mb-6">
 				<label for="curp" class="block mb-2 text-sm font-medium text-gray-900">CURP</label>
@@ -36,6 +40,23 @@
 			<button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Iniciar sesión</button>
 		</form>
 	</div>
+
+	<script>
+		const error = "[[${error}]]";
+		const messagesContainer = document.querySelector("#messages");
+
+		if (error) {
+			messagesContainer.innerHTML += `
+				<div class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg mb-10">
+					<span class="font-medium">¡Oh no! ${error}</span>
+				</div>
+			`;
+
+			setTimeout(() => {
+				messagesContainer.innerHTML = ``;
+			}, 3000);
+		}
+	</script>
 </body>
 
 </html>

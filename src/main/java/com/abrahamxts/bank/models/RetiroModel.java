@@ -5,8 +5,9 @@ import javax.persistence.*;
 
 @Data
 @Entity
+@NoArgsConstructor
 @Table(name = "Retiro")
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 public class RetiroModel extends TransaccionModel {
 
     public RetiroModel(CuentaModel cuenta, double monto) {

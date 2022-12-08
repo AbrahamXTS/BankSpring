@@ -1,9 +1,9 @@
 package com.abrahamxts.bank.repositories;
 
-import com.abrahamxts.bank.models.*;
+import java.util.*;
+import org.springframework.data.jpa.repository.*;
 
-import java.util.List;
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.abrahamxts.bank.models.*;
 
 public interface CuentaRepository extends JpaRepository<CuentaModel, Integer> {
 
