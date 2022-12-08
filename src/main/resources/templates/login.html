@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script th:src="@{/styles/tailwind.js}"></script>
+	<title>Inicia sesión</title>
+</head>
+
+<body>
+	<div class="flex flex-col justify-center items-center h-screen w-full">
+		<div class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg w-1/2 mb-10 mx-auto" th:if="${error}">
+			<span class="font-medium">¡Oh no! </span><span th:text="${error}"></span>
+		</div>
+		<form action="login" method="post" class="w-1/2">
+			<div class="mb-6">
+				<label for="curp" class="block mb-2 text-sm font-medium text-gray-900">CURP</label>
+				<div class="relative">
+					<div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+						<svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"> </path> </svg>
+					</div>
+					<input type="text" id="curp" name="curp" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5" placeholder="EILS011222MMYSNBA9" required>
+				</div>
+			</div>
+			<div class="mb-6">
+				<label for="contraseña" class="block mb-2 text-sm font-medium text-gray-900">Contraseña</label>
+				<div class="relative">
+					<div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+						<svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"></path></svg>
+					</div>
+					<input type="password" id="contraseña" name="contraseña" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5" placeholder="********" required>
+				</div>
+			</div>
+			<button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Iniciar sesión</button>
+		</form>
+	</div>
+</body>
+
+</html>
