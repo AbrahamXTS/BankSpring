@@ -14,7 +14,7 @@ public class TransferenciaModel extends TransaccionModel {
     private Integer destino;
 
 	public TransferenciaModel(CuentaModel cuenta, Integer destino, double monto, String concepto) {
-        super(monto, cuenta, "Transferencia a " + destino);
+        super(monto, cuenta, concepto);
         this.destino = destino;
     }
 }

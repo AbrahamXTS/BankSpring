@@ -10,7 +10,7 @@ import javax.persistence.*;
 @EqualsAndHashCode(callSuper = false)
 public class DepositoModel extends TransaccionModel {
 
-	public DepositoModel(CuentaModel cuenta, double monto) {
-        super(monto, cuenta, "Deposito");
+	public DepositoModel(CuentaModel cuenta, double monto, String concepto) {
+        super(monto, cuenta, concepto);
     }
 }

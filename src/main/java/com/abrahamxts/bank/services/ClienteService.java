@@ -16,5 +16,4 @@ public class ClienteService {
 		
 		return clienteRepository.findByToken(token).orElse(null);
 	}
-	
 }

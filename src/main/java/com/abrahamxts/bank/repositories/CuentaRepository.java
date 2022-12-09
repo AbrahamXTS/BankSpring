@@ -8,4 +8,6 @@ import com.abrahamxts.bank.models.*;
 public interface CuentaRepository extends JpaRepository<CuentaModel, Integer> {
 
 	public List<CuentaModel> findAllByClienteId(ClienteModel cliente);
+
+	public CuentaModel findByNumeroDeCuenta(Integer numeroDeCuenta);
 }

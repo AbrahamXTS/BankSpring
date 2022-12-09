@@ -59,11 +59,22 @@ public class DashboardController {
 	@GetMapping(value = "transacciones")
 	public String transacciones(HttpServletRequest request, Model model) {
 
+		List<CuentaModel> cuentas = cuentaService.getAccountsByClient(
+			(ClienteModel) request.getSession().getAttribute("cliente")
+		);
+
+		model.addAttribute("cuentas", cuentas);
 		return "transacciones";
 	}
 
 	@GetMapping(value = "transferencias")
 	public String transferencias(HttpServletRequest request, Model model) {
+
+		List<CuentaModel> cuentas = cuentaService.getAccountsByClient(
+			(ClienteModel) request.getSession().getAttribute("cliente")
+		);
+
+		model.addAttribute("cuentas", cuentas);
 
 		return "transferencias";
 	}
