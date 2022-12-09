@@ -8,7 +8,14 @@
     <img src="https://i.imgur.com/zO9pLsI.jpg" width="600" alt="Demo" />
 </p>
 
+## 📚 Descripción
+
 Migración del proyecto de clase de orientado a objetos al framework de Spring.
+
+## 👨🏻‍💻 Usuario de prueba
+
+- **CURP**: EIMA011116HCCSNBA8
+- **Contraseña**: Contraseña
 
 ## 📦 Dependencias
 
